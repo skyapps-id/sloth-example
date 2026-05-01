@@ -1,0 +1,39 @@
+http:
+  services:
+    tier1-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    tier2-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    tier3-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+
+  routers:
+    tier1:
+      rule: "Path(`/login`) || Path(`/api/payment`) || Path(`/api/checkout`) || PathPrefix(`/api/auth`)"
+      service: tier1-svc
+      entryPoints:
+        - web
+
+    tier2:
+      rule: "Path(`/api/users`) || Path(`/api/products`) || Path(`/api/orders`) || Path(`/api/cart`)"
+      service: tier2-svc
+      entryPoints:
+        - web
+
+    tier3:
+      rule: "Path(`/api/reports`) || Path(`/api/analytics`) || Path(`/api/notifications`) || Path(`/api/exports`)"
+      service: tier3-svc
+      entryPoints:
+        - web
+
+    health:
+      rule: "Path(`/health`)"
+      service: tier3-svc
+      entryPoints:
+        - web

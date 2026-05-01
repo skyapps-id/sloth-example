@@ -1,0 +1,122 @@
+version: prometheus/v1
+service: sloth-example
+slos:
+  - name: "tier1-availability"
+    objective: 99.9
+    description: "Critical endpoints availability (login, payment, checkout, auth)"
+    labels:
+      tier: critical
+    sli:
+      events:
+        error_query: |
+          sum(rate(traefik_service_requests_total{service="tier1-svc@file",code=~"5.."}[{{.window}}]))
+        total_query: |
+          sum(rate(traefik_service_requests_total{service="tier1-svc@file"}[{{.window}}]))
+    alerting:
+      name: Tier1HighErrorRate
+      labels:
+        severity: critical
+        tier: critical
+      annotations:
+        summary: "Critical endpoints error rate exceeded SLO target"
+
+  - name: "tier1-latency"
+    objective: 99.9
+    description: "Critical endpoints latency p99 < 500ms"
+    labels:
+      tier: critical
+    sli:
+      raw:
+        error_ratio_query: |
+          1 - (
+            sum(rate(traefik_service_request_duration_seconds_bucket{service="tier1-svc@file",le="0.5"}[{{.window}}]))
+            /
+            sum(rate(traefik_service_request_duration_seconds_count{service="tier1-svc@file"}[{{.window}}]))
+          )
+    alerting:
+      name: Tier1HighLatency
+      labels:
+        severity: critical
+        tier: critical
+      annotations:
+        summary: "Critical endpoints latency exceeded 500ms threshold"
+
+  - name: "tier2-availability"
+    objective: 99.5
+    description: "Standard endpoints availability (users, products, orders, cart)"
+    labels:
+      tier: standard
+    sli:
+      events:
+        error_query: |
+          sum(rate(traefik_service_requests_total{service="tier2-svc@file",code=~"5.."}[{{.window}}]))
+        total_query: |
+          sum(rate(traefik_service_requests_total{service="tier2-svc@file"}[{{.window}}]))
+    alerting:
+      name: Tier2HighErrorRate
+      labels:
+        severity: warning
+        tier: standard
+      annotations:
+        summary: "Standard endpoints error rate exceeded SLO target"
+
+  - name: "tier2-latency"
+    objective: 99.5
+    description: "Standard endpoints latency p99 < 1s"
+    labels:
+      tier: standard
+    sli:
+      raw:
+        error_ratio_query: |
+          1 - (
+            sum(rate(traefik_service_request_duration_seconds_bucket{service="tier2-svc@file",le="1.0"}[{{.window}}]))
+            /
+            sum(rate(traefik_service_request_duration_seconds_count{service="tier2-svc@file"}[{{.window}}]))
+          )
+    alerting:
+      name: Tier2HighLatency
+      labels:
+        severity: warning
+        tier: standard
+      annotations:
+        summary: "Standard endpoints latency exceeded 1s threshold"
+
+  - name: "tier3-availability"
+    objective: 99.0
+    description: "Background endpoints availability (reports, analytics, notifications, exports)"
+    labels:
+      tier: background
+    sli:
+      events:
+        error_query: |
+          sum(rate(traefik_service_requests_total{service="tier3-svc@file",code=~"5.."}[{{.window}}]))
+        total_query: |
+          sum(rate(traefik_service_requests_total{service="tier3-svc@file"}[{{.window}}]))
+    alerting:
+      name: Tier3HighErrorRate
+      labels:
+        severity: info
+        tier: background
+      annotations:
+        summary: "Background endpoints error rate exceeded SLO target"
+
+  - name: "tier3-latency"
+    objective: 99.0
+    description: "Background endpoints latency p99 < 5s"
+    labels:
+      tier: background
+    sli:
+      raw:
+        error_ratio_query: |
+          1 - (
+            sum(rate(traefik_service_request_duration_seconds_bucket{service="tier3-svc@file",le="5.0"}[{{.window}}]))
+            /
+            sum(rate(traefik_service_request_duration_seconds_count{service="tier3-svc@file"}[{{.window}}]))
+          )
+    alerting:
+      name: Tier3HighLatency
+      labels:
+        severity: info
+        tier: background
+      annotations:
+        summary: "Background endpoints latency exceeded 5s threshold"

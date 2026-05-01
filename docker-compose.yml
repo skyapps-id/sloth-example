@@ -1,0 +1,85 @@
+services:
+  app:
+    build: ./app
+    container_name: app
+    expose:
+      - "5000"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+  traefik:
+    image: traefik:v3.0
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro
+    networks:
+      - monitoring
+    restart: unless-stopped
+    depends_on:
+      - app
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+      - ./sloth/generated:/etc/prometheus/slo-rules:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=30d"
+    networks:
+      - monitoring
+    restart: unless-stopped
+    depends_on:
+      - traefik
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/overview/slo-dashboard.json
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    networks:
+      - monitoring
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+  sloth:
+    image: ghcr.io/slok/sloth:latest
+    container_name: sloth
+    volumes:
+      - ./sloth/slo.yaml:/slo-rules/slo.yaml:ro
+      - ./sloth/generated:/generated-rules
+    command:
+      - "generate"
+      - "-i"
+      - "/slo-rules/slo.yaml"
+      - "-o"
+      - "/generated-rules/prometheus-slo-rules.yml"
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
+
+volumes:
+  prometheus-data:
+  grafana-data:
