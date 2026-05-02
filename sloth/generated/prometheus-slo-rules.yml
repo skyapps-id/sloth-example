@@ -4,1284 +4,3195 @@
 # DO NOT EDIT.
 
 groups:
-- name: sloth-slo-sli-recordings-sloth-example-tier1-availability
+- name: sloth-slo-sli-recordings-sloth-example-tier1-login-availability
   rules:
   - record: slo:sli_error:ratio_rate5m
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file",code=~"5.."}[5m]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file",code=~"5.."}[5m]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file"}[5m]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file"}[5m]))
       )
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_window: 5m
       tier: critical
   - record: slo:sli_error:ratio_rate30m
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file",code=~"5.."}[30m]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file",code=~"5.."}[30m]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file"}[30m]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file"}[30m]))
       )
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_window: 30m
       tier: critical
   - record: slo:sli_error:ratio_rate1h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file",code=~"5.."}[1h]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file",code=~"5.."}[1h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file"}[1h]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file"}[1h]))
       )
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_window: 1h
       tier: critical
   - record: slo:sli_error:ratio_rate2h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file",code=~"5.."}[2h]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file",code=~"5.."}[2h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file"}[2h]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file"}[2h]))
       )
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_window: 2h
       tier: critical
   - record: slo:sli_error:ratio_rate6h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file",code=~"5.."}[6h]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file",code=~"5.."}[6h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file"}[6h]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file"}[6h]))
       )
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_window: 6h
       tier: critical
   - record: slo:sli_error:ratio_rate1d
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file",code=~"5.."}[1d]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file",code=~"5.."}[1d]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file"}[1d]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file"}[1d]))
       )
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_window: 1d
       tier: critical
   - record: slo:sli_error:ratio_rate3d
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file",code=~"5.."}[3d]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file",code=~"5.."}[3d]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier1-svc@file"}[3d]))
+      (sum(rate(traefik_service_requests_total{service="login-svc@file"}[3d]))
       )
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_window: 3d
       tier: critical
   - record: slo:sli_error:ratio_rate30d
     expr: |
-      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"}[30d])
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"}[30d])
       / ignoring (sloth_window)
-      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"}[30d])
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"}[30d])
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_window: 30d
       tier: critical
-- name: sloth-slo-meta-recordings-sloth-example-tier1-availability
+- name: sloth-slo-meta-recordings-sloth-example-tier1-login-availability
   rules:
   - record: slo:objective:ratio
     expr: vector(0.9990000000000001)
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       tier: critical
   - record: slo:error_budget:ratio
     expr: vector(1-0.9990000000000001)
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       tier: critical
   - record: slo:time_period:days
     expr: vector(30)
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       tier: critical
   - record: slo:current_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"}
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"}
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       tier: critical
   - record: slo:period_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"}
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"}
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       tier: critical
   - record: slo:period_error_budget_remaining:ratio
-    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier1-availability",
-      sloth_service="sloth-example", sloth_slo="tier1-availability"}
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier1-login-availability",
+      sloth_service="sloth-example", sloth_slo="tier1-login-availability"}
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       tier: critical
   - record: sloth_slo_info
     expr: vector(1)
     labels:
-      sloth_id: sloth-example-tier1-availability
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-availability
       sloth_mode: cli-gen-prom
       sloth_objective: "99.9"
       sloth_service: sloth-example
-      sloth_slo: tier1-availability
+      sloth_slo: tier1-login-availability
       sloth_spec: prometheus/v1
       sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
       tier: critical
-- name: sloth-slo-alerts-sloth-example-tier1-availability
+- name: sloth-slo-alerts-sloth-example-tier1-login-availability
   rules:
-  - alert: Tier1HighErrorRate
+  - alert: LoginHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
       )
     labels:
       severity: critical
       sloth_severity: page
       tier: critical
     annotations:
-      summary: Critical endpoints error rate exceeded SLO target
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-  - alert: Tier1HighErrorRate
+  - alert: LoginHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier1-availability", sloth_service="sloth-example", sloth_slo="tier1-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier1-login-availability", sloth_service="sloth-example", sloth_slo="tier1-login-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
       )
     labels:
       severity: critical
       sloth_severity: ticket
       tier: critical
     annotations:
-      summary: Critical endpoints error rate exceeded SLO target
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-- name: sloth-slo-sli-recordings-sloth-example-tier1-latency
+- name: sloth-slo-sli-recordings-sloth-example-tier1-login-latency
   rules:
   - record: slo:sli_error:ratio_rate5m
     expr: |-
       (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier1-svc@file",le="0.5"}[5m]))
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="login-svc@file",le="0.5"}[5m]))
         /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier1-svc@file"}[5m]))
+        sum(rate(traefik_service_request_duration_seconds_count{service="login-svc@file"}[5m]))
       )
       )
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_window: 5m
       tier: critical
   - record: slo:sli_error:ratio_rate30m
     expr: |-
       (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier1-svc@file",le="0.5"}[30m]))
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="login-svc@file",le="0.5"}[30m]))
         /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier1-svc@file"}[30m]))
+        sum(rate(traefik_service_request_duration_seconds_count{service="login-svc@file"}[30m]))
       )
       )
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_window: 30m
       tier: critical
   - record: slo:sli_error:ratio_rate1h
     expr: |-
       (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier1-svc@file",le="0.5"}[1h]))
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="login-svc@file",le="0.5"}[1h]))
         /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier1-svc@file"}[1h]))
+        sum(rate(traefik_service_request_duration_seconds_count{service="login-svc@file"}[1h]))
       )
       )
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_window: 1h
       tier: critical
   - record: slo:sli_error:ratio_rate2h
     expr: |-
       (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier1-svc@file",le="0.5"}[2h]))
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="login-svc@file",le="0.5"}[2h]))
         /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier1-svc@file"}[2h]))
+        sum(rate(traefik_service_request_duration_seconds_count{service="login-svc@file"}[2h]))
       )
       )
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_window: 2h
       tier: critical
   - record: slo:sli_error:ratio_rate6h
     expr: |-
       (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier1-svc@file",le="0.5"}[6h]))
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="login-svc@file",le="0.5"}[6h]))
         /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier1-svc@file"}[6h]))
+        sum(rate(traefik_service_request_duration_seconds_count{service="login-svc@file"}[6h]))
       )
       )
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_window: 6h
       tier: critical
   - record: slo:sli_error:ratio_rate1d
     expr: |-
       (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier1-svc@file",le="0.5"}[1d]))
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="login-svc@file",le="0.5"}[1d]))
         /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier1-svc@file"}[1d]))
+        sum(rate(traefik_service_request_duration_seconds_count{service="login-svc@file"}[1d]))
       )
       )
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_window: 1d
       tier: critical
   - record: slo:sli_error:ratio_rate3d
     expr: |-
       (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier1-svc@file",le="0.5"}[3d]))
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="login-svc@file",le="0.5"}[3d]))
         /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier1-svc@file"}[3d]))
+        sum(rate(traefik_service_request_duration_seconds_count{service="login-svc@file"}[3d]))
       )
       )
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_window: 3d
       tier: critical
   - record: slo:sli_error:ratio_rate30d
     expr: |
-      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"}[30d])
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"}[30d])
       / ignoring (sloth_window)
-      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"}[30d])
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"}[30d])
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_window: 30d
       tier: critical
-- name: sloth-slo-meta-recordings-sloth-example-tier1-latency
+- name: sloth-slo-meta-recordings-sloth-example-tier1-login-latency
   rules:
   - record: slo:objective:ratio
     expr: vector(0.9990000000000001)
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       tier: critical
   - record: slo:error_budget:ratio
     expr: vector(1-0.9990000000000001)
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       tier: critical
   - record: slo:time_period:days
     expr: vector(30)
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       tier: critical
   - record: slo:current_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"}
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"}
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       tier: critical
   - record: slo:period_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"}
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"}
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       tier: critical
   - record: slo:period_error_budget_remaining:ratio
-    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example",
-      sloth_slo="tier1-latency"}
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier1-login-latency",
+      sloth_service="sloth-example", sloth_slo="tier1-login-latency"}
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       tier: critical
   - record: sloth_slo_info
     expr: vector(1)
     labels:
-      sloth_id: sloth-example-tier1-latency
+      endpoint: login
+      sloth_id: sloth-example-tier1-login-latency
       sloth_mode: cli-gen-prom
       sloth_objective: "99.9"
       sloth_service: sloth-example
-      sloth_slo: tier1-latency
+      sloth_slo: tier1-login-latency
       sloth_spec: prometheus/v1
       sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
       tier: critical
-- name: sloth-slo-alerts-sloth-example-tier1-latency
+- name: sloth-slo-alerts-sloth-example-tier1-login-latency
   rules:
-  - alert: Tier1HighLatency
+  - alert: LoginHighLatency
     expr: |
       (
-          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"} > (6 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"} > (6 * 0.0009999999999999432)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"} > (6 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"} > (6 * 0.0009999999999999432)) without (sloth_window)
       )
     labels:
       severity: critical
       sloth_severity: page
       tier: critical
     annotations:
-      summary: Critical endpoints latency exceeded 500ms threshold
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-  - alert: Tier1HighLatency
+  - alert: LoginHighLatency
     expr: |
       (
-          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"} > (3 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"} > (3 * 0.0009999999999999432)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"} > (3 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"} > (3 * 0.0009999999999999432)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"} > (1 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"} > (1 * 0.0009999999999999432)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier1-latency", sloth_service="sloth-example", sloth_slo="tier1-latency"} > (1 * 0.0009999999999999432)) without (sloth_window)
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier1-login-latency", sloth_service="sloth-example", sloth_slo="tier1-login-latency"} > (1 * 0.0009999999999999432)) without (sloth_window)
       )
     labels:
       severity: critical
       sloth_severity: ticket
       tier: critical
     annotations:
-      summary: Critical endpoints latency exceeded 500ms threshold
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-- name: sloth-slo-sli-recordings-sloth-example-tier2-availability
+- name: sloth-slo-sli-recordings-sloth-example-tier1-payment-availability
   rules:
   - record: slo:sli_error:ratio_rate5m
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file",code=~"5.."}[5m]))
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file",code=~"5.."}[5m]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file"}[5m]))
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file"}[5m]))
       )
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier1-payment-availability
+      sloth_window: 5m
+      tier: critical
+  - record: slo:sli_error:ratio_rate30m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file",code=~"5.."}[30m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file"}[30m]))
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      sloth_window: 30m
+      tier: critical
+  - record: slo:sli_error:ratio_rate1h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file",code=~"5.."}[1h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file"}[1h]))
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      sloth_window: 1h
+      tier: critical
+  - record: slo:sli_error:ratio_rate2h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file",code=~"5.."}[2h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file"}[2h]))
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      sloth_window: 2h
+      tier: critical
+  - record: slo:sli_error:ratio_rate6h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file",code=~"5.."}[6h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file"}[6h]))
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      sloth_window: 6h
+      tier: critical
+  - record: slo:sli_error:ratio_rate1d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file",code=~"5.."}[1d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file"}[1d]))
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      sloth_window: 1d
+      tier: critical
+  - record: slo:sli_error:ratio_rate3d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file",code=~"5.."}[3d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="payment-svc@file"}[3d]))
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      sloth_window: 3d
+      tier: critical
+  - record: slo:sli_error:ratio_rate30d
+    expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"}[30d])
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      sloth_window: 30d
+      tier: critical
+- name: sloth-slo-meta-recordings-sloth-example-tier1-payment-availability
+  rules:
+  - record: slo:objective:ratio
+    expr: vector(0.9990000000000001)
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      tier: critical
+  - record: slo:error_budget:ratio
+    expr: vector(1-0.9990000000000001)
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      tier: critical
+  - record: slo:time_period:days
+    expr: vector(30)
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      tier: critical
+  - record: slo:current_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"}
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      tier: critical
+  - record: slo:period_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"}
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      tier: critical
+  - record: slo:period_error_budget_remaining:ratio
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier1-payment-availability",
+      sloth_service="sloth-example", sloth_slo="tier1-payment-availability"}
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      tier: critical
+  - record: sloth_slo_info
+    expr: vector(1)
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-availability
+      sloth_mode: cli-gen-prom
+      sloth_objective: "99.9"
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-availability
+      sloth_spec: prometheus/v1
+      sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
+      tier: critical
+- name: sloth-slo-alerts-sloth-example-tier1-payment-availability
+  rules:
+  - alert: PaymentHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
+      )
+    labels:
+      severity: critical
+      sloth_severity: page
+      tier: critical
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+  - alert: PaymentHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier1-payment-availability", sloth_service="sloth-example", sloth_slo="tier1-payment-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
+      )
+    labels:
+      severity: critical
+      sloth_severity: ticket
+      tier: critical
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+- name: sloth-slo-sli-recordings-sloth-example-tier1-payment-latency
+  rules:
+  - record: slo:sli_error:ratio_rate5m
+    expr: |-
+      (1 - (
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="payment-svc@file",le="0.5"}[5m]))
+        /
+        sum(rate(traefik_service_request_duration_seconds_count{service="payment-svc@file"}[5m]))
+      )
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_window: 5m
+      tier: critical
+  - record: slo:sli_error:ratio_rate30m
+    expr: |-
+      (1 - (
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="payment-svc@file",le="0.5"}[30m]))
+        /
+        sum(rate(traefik_service_request_duration_seconds_count{service="payment-svc@file"}[30m]))
+      )
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_window: 30m
+      tier: critical
+  - record: slo:sli_error:ratio_rate1h
+    expr: |-
+      (1 - (
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="payment-svc@file",le="0.5"}[1h]))
+        /
+        sum(rate(traefik_service_request_duration_seconds_count{service="payment-svc@file"}[1h]))
+      )
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_window: 1h
+      tier: critical
+  - record: slo:sli_error:ratio_rate2h
+    expr: |-
+      (1 - (
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="payment-svc@file",le="0.5"}[2h]))
+        /
+        sum(rate(traefik_service_request_duration_seconds_count{service="payment-svc@file"}[2h]))
+      )
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_window: 2h
+      tier: critical
+  - record: slo:sli_error:ratio_rate6h
+    expr: |-
+      (1 - (
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="payment-svc@file",le="0.5"}[6h]))
+        /
+        sum(rate(traefik_service_request_duration_seconds_count{service="payment-svc@file"}[6h]))
+      )
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_window: 6h
+      tier: critical
+  - record: slo:sli_error:ratio_rate1d
+    expr: |-
+      (1 - (
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="payment-svc@file",le="0.5"}[1d]))
+        /
+        sum(rate(traefik_service_request_duration_seconds_count{service="payment-svc@file"}[1d]))
+      )
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_window: 1d
+      tier: critical
+  - record: slo:sli_error:ratio_rate3d
+    expr: |-
+      (1 - (
+        sum(rate(traefik_service_request_duration_seconds_bucket{service="payment-svc@file",le="0.5"}[3d]))
+        /
+        sum(rate(traefik_service_request_duration_seconds_count{service="payment-svc@file"}[3d]))
+      )
+      )
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_window: 3d
+      tier: critical
+  - record: slo:sli_error:ratio_rate30d
+    expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"}[30d])
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_window: 30d
+      tier: critical
+- name: sloth-slo-meta-recordings-sloth-example-tier1-payment-latency
+  rules:
+  - record: slo:objective:ratio
+    expr: vector(0.9990000000000001)
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      tier: critical
+  - record: slo:error_budget:ratio
+    expr: vector(1-0.9990000000000001)
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      tier: critical
+  - record: slo:time_period:days
+    expr: vector(30)
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      tier: critical
+  - record: slo:current_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"}
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      tier: critical
+  - record: slo:period_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"}
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      tier: critical
+  - record: slo:period_error_budget_remaining:ratio
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier1-payment-latency",
+      sloth_service="sloth-example", sloth_slo="tier1-payment-latency"}
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      tier: critical
+  - record: sloth_slo_info
+    expr: vector(1)
+    labels:
+      endpoint: payment
+      sloth_id: sloth-example-tier1-payment-latency
+      sloth_mode: cli-gen-prom
+      sloth_objective: "99.9"
+      sloth_service: sloth-example
+      sloth_slo: tier1-payment-latency
+      sloth_spec: prometheus/v1
+      sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
+      tier: critical
+- name: sloth-slo-alerts-sloth-example-tier1-payment-latency
+  rules:
+  - alert: PaymentHighLatency
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"} > (6 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"} > (6 * 0.0009999999999999432)) without (sloth_window)
+      )
+    labels:
+      severity: critical
+      sloth_severity: page
+      tier: critical
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+  - alert: PaymentHighLatency
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"} > (3 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"} > (3 * 0.0009999999999999432)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"} > (1 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier1-payment-latency", sloth_service="sloth-example", sloth_slo="tier1-payment-latency"} > (1 * 0.0009999999999999432)) without (sloth_window)
+      )
+    labels:
+      severity: critical
+      sloth_severity: ticket
+      tier: critical
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+- name: sloth-slo-sli-recordings-sloth-example-tier1-checkout-availability
+  rules:
+  - record: slo:sli_error:ratio_rate5m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file",code=~"5.."}[5m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file"}[5m]))
+      )
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_window: 5m
+      tier: critical
+  - record: slo:sli_error:ratio_rate30m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file",code=~"5.."}[30m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file"}[30m]))
+      )
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_window: 30m
+      tier: critical
+  - record: slo:sli_error:ratio_rate1h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file",code=~"5.."}[1h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file"}[1h]))
+      )
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_window: 1h
+      tier: critical
+  - record: slo:sli_error:ratio_rate2h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file",code=~"5.."}[2h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file"}[2h]))
+      )
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_window: 2h
+      tier: critical
+  - record: slo:sli_error:ratio_rate6h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file",code=~"5.."}[6h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file"}[6h]))
+      )
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_window: 6h
+      tier: critical
+  - record: slo:sli_error:ratio_rate1d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file",code=~"5.."}[1d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file"}[1d]))
+      )
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_window: 1d
+      tier: critical
+  - record: slo:sli_error:ratio_rate3d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file",code=~"5.."}[3d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="checkout-svc@file"}[3d]))
+      )
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_window: 3d
+      tier: critical
+  - record: slo:sli_error:ratio_rate30d
+    expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"}[30d])
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_window: 30d
+      tier: critical
+- name: sloth-slo-meta-recordings-sloth-example-tier1-checkout-availability
+  rules:
+  - record: slo:objective:ratio
+    expr: vector(0.9990000000000001)
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      tier: critical
+  - record: slo:error_budget:ratio
+    expr: vector(1-0.9990000000000001)
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      tier: critical
+  - record: slo:time_period:days
+    expr: vector(30)
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      tier: critical
+  - record: slo:current_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"}
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      tier: critical
+  - record: slo:period_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"}
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      tier: critical
+  - record: slo:period_error_budget_remaining:ratio
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier1-checkout-availability",
+      sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"}
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      tier: critical
+  - record: sloth_slo_info
+    expr: vector(1)
+    labels:
+      endpoint: checkout
+      sloth_id: sloth-example-tier1-checkout-availability
+      sloth_mode: cli-gen-prom
+      sloth_objective: "99.9"
+      sloth_service: sloth-example
+      sloth_slo: tier1-checkout-availability
+      sloth_spec: prometheus/v1
+      sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
+      tier: critical
+- name: sloth-slo-alerts-sloth-example-tier1-checkout-availability
+  rules:
+  - alert: CheckoutHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
+      )
+    labels:
+      severity: critical
+      sloth_severity: page
+      tier: critical
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+  - alert: CheckoutHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier1-checkout-availability", sloth_service="sloth-example", sloth_slo="tier1-checkout-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
+      )
+    labels:
+      severity: critical
+      sloth_severity: ticket
+      tier: critical
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+- name: sloth-slo-sli-recordings-sloth-example-tier1-auth-availability
+  rules:
+  - record: slo:sli_error:ratio_rate5m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file",code=~"5.."}[5m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file"}[5m]))
+      )
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_window: 5m
+      tier: critical
+  - record: slo:sli_error:ratio_rate30m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file",code=~"5.."}[30m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file"}[30m]))
+      )
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_window: 30m
+      tier: critical
+  - record: slo:sli_error:ratio_rate1h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file",code=~"5.."}[1h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file"}[1h]))
+      )
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_window: 1h
+      tier: critical
+  - record: slo:sli_error:ratio_rate2h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file",code=~"5.."}[2h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file"}[2h]))
+      )
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_window: 2h
+      tier: critical
+  - record: slo:sli_error:ratio_rate6h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file",code=~"5.."}[6h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file"}[6h]))
+      )
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_window: 6h
+      tier: critical
+  - record: slo:sli_error:ratio_rate1d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file",code=~"5.."}[1d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file"}[1d]))
+      )
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_window: 1d
+      tier: critical
+  - record: slo:sli_error:ratio_rate3d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file",code=~"5.."}[3d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="auth-svc@file"}[3d]))
+      )
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_window: 3d
+      tier: critical
+  - record: slo:sli_error:ratio_rate30d
+    expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"}[30d])
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_window: 30d
+      tier: critical
+- name: sloth-slo-meta-recordings-sloth-example-tier1-auth-availability
+  rules:
+  - record: slo:objective:ratio
+    expr: vector(0.9990000000000001)
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      tier: critical
+  - record: slo:error_budget:ratio
+    expr: vector(1-0.9990000000000001)
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      tier: critical
+  - record: slo:time_period:days
+    expr: vector(30)
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      tier: critical
+  - record: slo:current_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"}
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      tier: critical
+  - record: slo:period_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"}
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      tier: critical
+  - record: slo:period_error_budget_remaining:ratio
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier1-auth-availability",
+      sloth_service="sloth-example", sloth_slo="tier1-auth-availability"}
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      tier: critical
+  - record: sloth_slo_info
+    expr: vector(1)
+    labels:
+      endpoint: auth
+      sloth_id: sloth-example-tier1-auth-availability
+      sloth_mode: cli-gen-prom
+      sloth_objective: "99.9"
+      sloth_service: sloth-example
+      sloth_slo: tier1-auth-availability
+      sloth_spec: prometheus/v1
+      sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
+      tier: critical
+- name: sloth-slo-alerts-sloth-example-tier1-auth-availability
+  rules:
+  - alert: AuthHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"} > (14.4 * 0.0009999999999999432)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"} > (6 * 0.0009999999999999432)) without (sloth_window)
+      )
+    labels:
+      severity: critical
+      sloth_severity: page
+      tier: critical
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+  - alert: AuthHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"} > (3 * 0.0009999999999999432)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier1-auth-availability", sloth_service="sloth-example", sloth_slo="tier1-auth-availability"} > (1 * 0.0009999999999999432)) without (sloth_window)
+      )
+    labels:
+      severity: critical
+      sloth_severity: ticket
+      tier: critical
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+- name: sloth-slo-sli-recordings-sloth-example-tier2-users-availability
+  rules:
+  - record: slo:sli_error:ratio_rate5m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="users-svc@file",code=~"5.."}[5m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="users-svc@file"}[5m]))
+      )
+    labels:
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-users-availability
       sloth_window: 5m
       tier: standard
   - record: slo:sli_error:ratio_rate30m
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file",code=~"5.."}[30m]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file",code=~"5.."}[30m]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file"}[30m]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file"}[30m]))
       )
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       sloth_window: 30m
       tier: standard
   - record: slo:sli_error:ratio_rate1h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file",code=~"5.."}[1h]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file",code=~"5.."}[1h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file"}[1h]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file"}[1h]))
       )
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       sloth_window: 1h
       tier: standard
   - record: slo:sli_error:ratio_rate2h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file",code=~"5.."}[2h]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file",code=~"5.."}[2h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file"}[2h]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file"}[2h]))
       )
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       sloth_window: 2h
       tier: standard
   - record: slo:sli_error:ratio_rate6h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file",code=~"5.."}[6h]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file",code=~"5.."}[6h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file"}[6h]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file"}[6h]))
       )
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       sloth_window: 6h
       tier: standard
   - record: slo:sli_error:ratio_rate1d
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file",code=~"5.."}[1d]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file",code=~"5.."}[1d]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file"}[1d]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file"}[1d]))
       )
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       sloth_window: 1d
       tier: standard
   - record: slo:sli_error:ratio_rate3d
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file",code=~"5.."}[3d]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file",code=~"5.."}[3d]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier2-svc@file"}[3d]))
+      (sum(rate(traefik_service_requests_total{service="users-svc@file"}[3d]))
       )
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       sloth_window: 3d
       tier: standard
   - record: slo:sli_error:ratio_rate30d
     expr: |
-      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"}[30d])
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"}[30d])
       / ignoring (sloth_window)
-      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"}[30d])
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"}[30d])
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       sloth_window: 30d
       tier: standard
-- name: sloth-slo-meta-recordings-sloth-example-tier2-availability
+- name: sloth-slo-meta-recordings-sloth-example-tier2-users-availability
   rules:
   - record: slo:objective:ratio
     expr: vector(0.995)
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       tier: standard
   - record: slo:error_budget:ratio
     expr: vector(1-0.995)
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       tier: standard
   - record: slo:time_period:days
     expr: vector(30)
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       tier: standard
   - record: slo:current_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"}
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"}
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       tier: standard
   - record: slo:period_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"}
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"}
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       tier: standard
   - record: slo:period_error_budget_remaining:ratio
-    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier2-availability",
-      sloth_service="sloth-example", sloth_slo="tier2-availability"}
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier2-users-availability",
+      sloth_service="sloth-example", sloth_slo="tier2-users-availability"}
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       tier: standard
   - record: sloth_slo_info
     expr: vector(1)
     labels:
-      sloth_id: sloth-example-tier2-availability
+      endpoint: users
+      sloth_id: sloth-example-tier2-users-availability
       sloth_mode: cli-gen-prom
       sloth_objective: "99.5"
       sloth_service: sloth-example
-      sloth_slo: tier2-availability
+      sloth_slo: tier2-users-availability
       sloth_spec: prometheus/v1
       sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
       tier: standard
-- name: sloth-slo-alerts-sloth-example-tier2-availability
+- name: sloth-slo-alerts-sloth-example-tier2-users-availability
   rules:
-  - alert: Tier2HighErrorRate
+  - alert: UsersHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"} > (14.4 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"} > (14.4 * 0.005)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"} > (14.4 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"} > (14.4 * 0.005)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"} > (6 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"} > (6 * 0.005)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"} > (6 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"} > (6 * 0.005)) without (sloth_window)
       )
     labels:
       severity: warning
       sloth_severity: page
       tier: standard
     annotations:
-      summary: Standard endpoints error rate exceeded SLO target
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-  - alert: Tier2HighErrorRate
+  - alert: UsersHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"} > (3 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"} > (3 * 0.005)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"} > (3 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"} > (3 * 0.005)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"} > (1 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"} > (1 * 0.005)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier2-availability", sloth_service="sloth-example", sloth_slo="tier2-availability"} > (1 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier2-users-availability", sloth_service="sloth-example", sloth_slo="tier2-users-availability"} > (1 * 0.005)) without (sloth_window)
       )
     labels:
       severity: warning
       sloth_severity: ticket
       tier: standard
     annotations:
-      summary: Standard endpoints error rate exceeded SLO target
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-- name: sloth-slo-sli-recordings-sloth-example-tier2-latency
+- name: sloth-slo-sli-recordings-sloth-example-tier2-products-availability
   rules:
   - record: slo:sli_error:ratio_rate5m
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier2-svc@file",le="1.0"}[5m]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier2-svc@file"}[5m]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="products-svc@file",code=~"5.."}[5m]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="products-svc@file"}[5m]))
       )
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_window: 5m
       tier: standard
   - record: slo:sli_error:ratio_rate30m
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier2-svc@file",le="1.0"}[30m]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier2-svc@file"}[30m]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="products-svc@file",code=~"5.."}[30m]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="products-svc@file"}[30m]))
       )
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_window: 30m
       tier: standard
   - record: slo:sli_error:ratio_rate1h
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier2-svc@file",le="1.0"}[1h]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier2-svc@file"}[1h]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="products-svc@file",code=~"5.."}[1h]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="products-svc@file"}[1h]))
       )
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_window: 1h
       tier: standard
   - record: slo:sli_error:ratio_rate2h
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier2-svc@file",le="1.0"}[2h]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier2-svc@file"}[2h]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="products-svc@file",code=~"5.."}[2h]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="products-svc@file"}[2h]))
       )
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_window: 2h
       tier: standard
   - record: slo:sli_error:ratio_rate6h
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier2-svc@file",le="1.0"}[6h]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier2-svc@file"}[6h]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="products-svc@file",code=~"5.."}[6h]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="products-svc@file"}[6h]))
       )
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_window: 6h
       tier: standard
   - record: slo:sli_error:ratio_rate1d
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier2-svc@file",le="1.0"}[1d]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier2-svc@file"}[1d]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="products-svc@file",code=~"5.."}[1d]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="products-svc@file"}[1d]))
       )
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_window: 1d
       tier: standard
   - record: slo:sli_error:ratio_rate3d
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier2-svc@file",le="1.0"}[3d]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier2-svc@file"}[3d]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="products-svc@file",code=~"5.."}[3d]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="products-svc@file"}[3d]))
       )
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_window: 3d
       tier: standard
   - record: slo:sli_error:ratio_rate30d
     expr: |
-      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"}[30d])
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"}[30d])
       / ignoring (sloth_window)
-      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"}[30d])
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"}[30d])
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_window: 30d
       tier: standard
-- name: sloth-slo-meta-recordings-sloth-example-tier2-latency
+- name: sloth-slo-meta-recordings-sloth-example-tier2-products-availability
   rules:
   - record: slo:objective:ratio
     expr: vector(0.995)
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       tier: standard
   - record: slo:error_budget:ratio
     expr: vector(1-0.995)
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       tier: standard
   - record: slo:time_period:days
     expr: vector(30)
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       tier: standard
   - record: slo:current_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"}
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"}
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       tier: standard
   - record: slo:period_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"}
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"}
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       tier: standard
   - record: slo:period_error_budget_remaining:ratio
-    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example",
-      sloth_slo="tier2-latency"}
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier2-products-availability",
+      sloth_service="sloth-example", sloth_slo="tier2-products-availability"}
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       tier: standard
   - record: sloth_slo_info
     expr: vector(1)
     labels:
-      sloth_id: sloth-example-tier2-latency
+      endpoint: products
+      sloth_id: sloth-example-tier2-products-availability
       sloth_mode: cli-gen-prom
       sloth_objective: "99.5"
       sloth_service: sloth-example
-      sloth_slo: tier2-latency
+      sloth_slo: tier2-products-availability
       sloth_spec: prometheus/v1
       sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
       tier: standard
-- name: sloth-slo-alerts-sloth-example-tier2-latency
+- name: sloth-slo-alerts-sloth-example-tier2-products-availability
   rules:
-  - alert: Tier2HighLatency
+  - alert: ProductsHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"} > (14.4 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"} > (14.4 * 0.005)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"} > (14.4 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"} > (14.4 * 0.005)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"} > (6 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"} > (6 * 0.005)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"} > (6 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"} > (6 * 0.005)) without (sloth_window)
       )
     labels:
       severity: warning
       sloth_severity: page
       tier: standard
     annotations:
-      summary: Standard endpoints latency exceeded 1s threshold
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-  - alert: Tier2HighLatency
+  - alert: ProductsHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"} > (3 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"} > (3 * 0.005)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"} > (3 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"} > (3 * 0.005)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"} > (1 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"} > (1 * 0.005)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier2-latency", sloth_service="sloth-example", sloth_slo="tier2-latency"} > (1 * 0.005)) without (sloth_window)
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier2-products-availability", sloth_service="sloth-example", sloth_slo="tier2-products-availability"} > (1 * 0.005)) without (sloth_window)
       )
     labels:
       severity: warning
       sloth_severity: ticket
       tier: standard
     annotations:
-      summary: Standard endpoints latency exceeded 1s threshold
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-- name: sloth-slo-sli-recordings-sloth-example-tier3-availability
+- name: sloth-slo-sli-recordings-sloth-example-tier2-orders-availability
   rules:
   - record: slo:sli_error:ratio_rate5m
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file",code=~"5.."}[5m]))
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file",code=~"5.."}[5m]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file"}[5m]))
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file"}[5m]))
       )
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier2-orders-availability
+      sloth_window: 5m
+      tier: standard
+  - record: slo:sli_error:ratio_rate30m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file",code=~"5.."}[30m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file"}[30m]))
+      )
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      sloth_window: 30m
+      tier: standard
+  - record: slo:sli_error:ratio_rate1h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file",code=~"5.."}[1h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file"}[1h]))
+      )
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      sloth_window: 1h
+      tier: standard
+  - record: slo:sli_error:ratio_rate2h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file",code=~"5.."}[2h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file"}[2h]))
+      )
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      sloth_window: 2h
+      tier: standard
+  - record: slo:sli_error:ratio_rate6h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file",code=~"5.."}[6h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file"}[6h]))
+      )
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      sloth_window: 6h
+      tier: standard
+  - record: slo:sli_error:ratio_rate1d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file",code=~"5.."}[1d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file"}[1d]))
+      )
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      sloth_window: 1d
+      tier: standard
+  - record: slo:sli_error:ratio_rate3d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file",code=~"5.."}[3d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="orders-svc@file"}[3d]))
+      )
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      sloth_window: 3d
+      tier: standard
+  - record: slo:sli_error:ratio_rate30d
+    expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"}[30d])
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      sloth_window: 30d
+      tier: standard
+- name: sloth-slo-meta-recordings-sloth-example-tier2-orders-availability
+  rules:
+  - record: slo:objective:ratio
+    expr: vector(0.995)
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      tier: standard
+  - record: slo:error_budget:ratio
+    expr: vector(1-0.995)
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      tier: standard
+  - record: slo:time_period:days
+    expr: vector(30)
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      tier: standard
+  - record: slo:current_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"}
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      tier: standard
+  - record: slo:period_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"}
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      tier: standard
+  - record: slo:period_error_budget_remaining:ratio
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier2-orders-availability",
+      sloth_service="sloth-example", sloth_slo="tier2-orders-availability"}
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      tier: standard
+  - record: sloth_slo_info
+    expr: vector(1)
+    labels:
+      endpoint: orders
+      sloth_id: sloth-example-tier2-orders-availability
+      sloth_mode: cli-gen-prom
+      sloth_objective: "99.5"
+      sloth_service: sloth-example
+      sloth_slo: tier2-orders-availability
+      sloth_spec: prometheus/v1
+      sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
+      tier: standard
+- name: sloth-slo-alerts-sloth-example-tier2-orders-availability
+  rules:
+  - alert: OrdersHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"} > (14.4 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"} > (14.4 * 0.005)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"} > (6 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"} > (6 * 0.005)) without (sloth_window)
+      )
+    labels:
+      severity: warning
+      sloth_severity: page
+      tier: standard
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+  - alert: OrdersHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"} > (3 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"} > (3 * 0.005)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"} > (1 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier2-orders-availability", sloth_service="sloth-example", sloth_slo="tier2-orders-availability"} > (1 * 0.005)) without (sloth_window)
+      )
+    labels:
+      severity: warning
+      sloth_severity: ticket
+      tier: standard
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+- name: sloth-slo-sli-recordings-sloth-example-tier2-cart-availability
+  rules:
+  - record: slo:sli_error:ratio_rate5m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file",code=~"5.."}[5m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file"}[5m]))
+      )
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_window: 5m
+      tier: standard
+  - record: slo:sli_error:ratio_rate30m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file",code=~"5.."}[30m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file"}[30m]))
+      )
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_window: 30m
+      tier: standard
+  - record: slo:sli_error:ratio_rate1h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file",code=~"5.."}[1h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file"}[1h]))
+      )
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_window: 1h
+      tier: standard
+  - record: slo:sli_error:ratio_rate2h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file",code=~"5.."}[2h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file"}[2h]))
+      )
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_window: 2h
+      tier: standard
+  - record: slo:sli_error:ratio_rate6h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file",code=~"5.."}[6h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file"}[6h]))
+      )
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_window: 6h
+      tier: standard
+  - record: slo:sli_error:ratio_rate1d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file",code=~"5.."}[1d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file"}[1d]))
+      )
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_window: 1d
+      tier: standard
+  - record: slo:sli_error:ratio_rate3d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file",code=~"5.."}[3d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="cart-svc@file"}[3d]))
+      )
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_window: 3d
+      tier: standard
+  - record: slo:sli_error:ratio_rate30d
+    expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"}[30d])
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_window: 30d
+      tier: standard
+- name: sloth-slo-meta-recordings-sloth-example-tier2-cart-availability
+  rules:
+  - record: slo:objective:ratio
+    expr: vector(0.995)
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      tier: standard
+  - record: slo:error_budget:ratio
+    expr: vector(1-0.995)
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      tier: standard
+  - record: slo:time_period:days
+    expr: vector(30)
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      tier: standard
+  - record: slo:current_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"}
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      tier: standard
+  - record: slo:period_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"}
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      tier: standard
+  - record: slo:period_error_budget_remaining:ratio
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier2-cart-availability",
+      sloth_service="sloth-example", sloth_slo="tier2-cart-availability"}
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      tier: standard
+  - record: sloth_slo_info
+    expr: vector(1)
+    labels:
+      endpoint: cart
+      sloth_id: sloth-example-tier2-cart-availability
+      sloth_mode: cli-gen-prom
+      sloth_objective: "99.5"
+      sloth_service: sloth-example
+      sloth_slo: tier2-cart-availability
+      sloth_spec: prometheus/v1
+      sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
+      tier: standard
+- name: sloth-slo-alerts-sloth-example-tier2-cart-availability
+  rules:
+  - alert: CartHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"} > (14.4 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"} > (14.4 * 0.005)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"} > (6 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"} > (6 * 0.005)) without (sloth_window)
+      )
+    labels:
+      severity: warning
+      sloth_severity: page
+      tier: standard
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+  - alert: CartHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"} > (3 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"} > (3 * 0.005)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"} > (1 * 0.005)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier2-cart-availability", sloth_service="sloth-example", sloth_slo="tier2-cart-availability"} > (1 * 0.005)) without (sloth_window)
+      )
+    labels:
+      severity: warning
+      sloth_severity: ticket
+      tier: standard
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+- name: sloth-slo-sli-recordings-sloth-example-tier3-reports-availability
+  rules:
+  - record: slo:sli_error:ratio_rate5m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file",code=~"5.."}[5m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file"}[5m]))
+      )
+    labels:
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-reports-availability
       sloth_window: 5m
       tier: background
   - record: slo:sli_error:ratio_rate30m
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file",code=~"5.."}[30m]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file",code=~"5.."}[30m]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file"}[30m]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file"}[30m]))
       )
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       sloth_window: 30m
       tier: background
   - record: slo:sli_error:ratio_rate1h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file",code=~"5.."}[1h]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file",code=~"5.."}[1h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file"}[1h]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file"}[1h]))
       )
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       sloth_window: 1h
       tier: background
   - record: slo:sli_error:ratio_rate2h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file",code=~"5.."}[2h]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file",code=~"5.."}[2h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file"}[2h]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file"}[2h]))
       )
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       sloth_window: 2h
       tier: background
   - record: slo:sli_error:ratio_rate6h
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file",code=~"5.."}[6h]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file",code=~"5.."}[6h]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file"}[6h]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file"}[6h]))
       )
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       sloth_window: 6h
       tier: background
   - record: slo:sli_error:ratio_rate1d
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file",code=~"5.."}[1d]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file",code=~"5.."}[1d]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file"}[1d]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file"}[1d]))
       )
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       sloth_window: 1d
       tier: background
   - record: slo:sli_error:ratio_rate3d
     expr: |
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file",code=~"5.."}[3d]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file",code=~"5.."}[3d]))
       )
       /
-      (sum(rate(traefik_service_requests_total{service="tier3-svc@file"}[3d]))
+      (sum(rate(traefik_service_requests_total{service="reports-svc@file"}[3d]))
       )
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       sloth_window: 3d
       tier: background
   - record: slo:sli_error:ratio_rate30d
     expr: |
-      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"}[30d])
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"}[30d])
       / ignoring (sloth_window)
-      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"}[30d])
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"}[30d])
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       sloth_window: 30d
       tier: background
-- name: sloth-slo-meta-recordings-sloth-example-tier3-availability
+- name: sloth-slo-meta-recordings-sloth-example-tier3-reports-availability
   rules:
   - record: slo:objective:ratio
     expr: vector(0.99)
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       tier: background
   - record: slo:error_budget:ratio
     expr: vector(1-0.99)
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       tier: background
   - record: slo:time_period:days
     expr: vector(30)
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       tier: background
   - record: slo:current_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"}
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"}
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       tier: background
   - record: slo:period_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"}
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"}
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       tier: background
   - record: slo:period_error_budget_remaining:ratio
-    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier3-availability",
-      sloth_service="sloth-example", sloth_slo="tier3-availability"}
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier3-reports-availability",
+      sloth_service="sloth-example", sloth_slo="tier3-reports-availability"}
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       tier: background
   - record: sloth_slo_info
     expr: vector(1)
     labels:
-      sloth_id: sloth-example-tier3-availability
+      endpoint: reports
+      sloth_id: sloth-example-tier3-reports-availability
       sloth_mode: cli-gen-prom
       sloth_objective: "99"
       sloth_service: sloth-example
-      sloth_slo: tier3-availability
+      sloth_slo: tier3-reports-availability
       sloth_spec: prometheus/v1
       sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
       tier: background
-- name: sloth-slo-alerts-sloth-example-tier3-availability
+- name: sloth-slo-alerts-sloth-example-tier3-reports-availability
   rules:
-  - alert: Tier3HighErrorRate
+  - alert: ReportsHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"} > (14.4 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"} > (14.4 * 0.01)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"} > (14.4 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"} > (14.4 * 0.01)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"} > (6 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"} > (6 * 0.01)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"} > (6 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"} > (6 * 0.01)) without (sloth_window)
       )
     labels:
       severity: info
       sloth_severity: page
       tier: background
     annotations:
-      summary: Background endpoints error rate exceeded SLO target
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-  - alert: Tier3HighErrorRate
+  - alert: ReportsHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"} > (3 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"} > (3 * 0.01)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"} > (3 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"} > (3 * 0.01)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"} > (1 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"} > (1 * 0.01)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier3-availability", sloth_service="sloth-example", sloth_slo="tier3-availability"} > (1 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier3-reports-availability", sloth_service="sloth-example", sloth_slo="tier3-reports-availability"} > (1 * 0.01)) without (sloth_window)
       )
     labels:
       severity: info
       sloth_severity: ticket
       tier: background
     annotations:
-      summary: Background endpoints error rate exceeded SLO target
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-- name: sloth-slo-sli-recordings-sloth-example-tier3-latency
+- name: sloth-slo-sli-recordings-sloth-example-tier3-analytics-availability
   rules:
   - record: slo:sli_error:ratio_rate5m
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier3-svc@file",le="5.0"}[5m]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier3-svc@file"}[5m]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file",code=~"5.."}[5m]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file"}[5m]))
       )
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_window: 5m
       tier: background
   - record: slo:sli_error:ratio_rate30m
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier3-svc@file",le="5.0"}[30m]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier3-svc@file"}[30m]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file",code=~"5.."}[30m]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file"}[30m]))
       )
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_window: 30m
       tier: background
   - record: slo:sli_error:ratio_rate1h
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier3-svc@file",le="5.0"}[1h]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier3-svc@file"}[1h]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file",code=~"5.."}[1h]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file"}[1h]))
       )
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_window: 1h
       tier: background
   - record: slo:sli_error:ratio_rate2h
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier3-svc@file",le="5.0"}[2h]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier3-svc@file"}[2h]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file",code=~"5.."}[2h]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file"}[2h]))
       )
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_window: 2h
       tier: background
   - record: slo:sli_error:ratio_rate6h
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier3-svc@file",le="5.0"}[6h]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier3-svc@file"}[6h]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file",code=~"5.."}[6h]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file"}[6h]))
       )
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_window: 6h
       tier: background
   - record: slo:sli_error:ratio_rate1d
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier3-svc@file",le="5.0"}[1d]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier3-svc@file"}[1d]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file",code=~"5.."}[1d]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file"}[1d]))
       )
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_window: 1d
       tier: background
   - record: slo:sli_error:ratio_rate3d
-    expr: |-
-      (1 - (
-        sum(rate(traefik_service_request_duration_seconds_bucket{service="tier3-svc@file",le="5.0"}[3d]))
-        /
-        sum(rate(traefik_service_request_duration_seconds_count{service="tier3-svc@file"}[3d]))
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file",code=~"5.."}[3d]))
       )
+      /
+      (sum(rate(traefik_service_requests_total{service="analytics-svc@file"}[3d]))
       )
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_window: 3d
       tier: background
   - record: slo:sli_error:ratio_rate30d
     expr: |
-      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"}[30d])
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"}[30d])
       / ignoring (sloth_window)
-      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"}[30d])
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"}[30d])
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_window: 30d
       tier: background
-- name: sloth-slo-meta-recordings-sloth-example-tier3-latency
+- name: sloth-slo-meta-recordings-sloth-example-tier3-analytics-availability
   rules:
   - record: slo:objective:ratio
     expr: vector(0.99)
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       tier: background
   - record: slo:error_budget:ratio
     expr: vector(1-0.99)
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       tier: background
   - record: slo:time_period:days
     expr: vector(30)
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       tier: background
   - record: slo:current_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"}
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"}
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       tier: background
   - record: slo:period_burn_rate:ratio
     expr: |
-      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"}
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"}
       / on(sloth_id, sloth_slo, sloth_service) group_left
-      slo:error_budget:ratio{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"}
+      slo:error_budget:ratio{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"}
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       tier: background
   - record: slo:period_error_budget_remaining:ratio
-    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example",
-      sloth_slo="tier3-latency"}
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier3-analytics-availability",
+      sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"}
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       tier: background
   - record: sloth_slo_info
     expr: vector(1)
     labels:
-      sloth_id: sloth-example-tier3-latency
+      endpoint: analytics
+      sloth_id: sloth-example-tier3-analytics-availability
       sloth_mode: cli-gen-prom
       sloth_objective: "99"
       sloth_service: sloth-example
-      sloth_slo: tier3-latency
+      sloth_slo: tier3-analytics-availability
       sloth_spec: prometheus/v1
       sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
       tier: background
-- name: sloth-slo-alerts-sloth-example-tier3-latency
+- name: sloth-slo-alerts-sloth-example-tier3-analytics-availability
   rules:
-  - alert: Tier3HighLatency
+  - alert: AnalyticsHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"} > (14.4 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"} > (14.4 * 0.01)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"} > (14.4 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"} > (14.4 * 0.01)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"} > (6 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"} > (6 * 0.01)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"} > (6 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"} > (6 * 0.01)) without (sloth_window)
       )
     labels:
       severity: info
       sloth_severity: page
       tier: background
     annotations:
-      summary: Background endpoints latency exceeded 5s threshold
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.
-  - alert: Tier3HighLatency
+  - alert: AnalyticsHighErrorRate
     expr: |
       (
-          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"} > (3 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"} > (3 * 0.01)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"} > (3 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"} > (3 * 0.01)) without (sloth_window)
       )
       or
       (
-          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"} > (1 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"} > (1 * 0.01)) without (sloth_window)
           and
-          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier3-latency", sloth_service="sloth-example", sloth_slo="tier3-latency"} > (1 * 0.01)) without (sloth_window)
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier3-analytics-availability", sloth_service="sloth-example", sloth_slo="tier3-analytics-availability"} > (1 * 0.01)) without (sloth_window)
       )
     labels:
       severity: info
       sloth_severity: ticket
       tier: background
     annotations:
-      summary: Background endpoints latency exceeded 5s threshold
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+- name: sloth-slo-sli-recordings-sloth-example-tier3-notifications-availability
+  rules:
+  - record: slo:sli_error:ratio_rate5m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file",code=~"5.."}[5m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file"}[5m]))
+      )
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_window: 5m
+      tier: background
+  - record: slo:sli_error:ratio_rate30m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file",code=~"5.."}[30m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file"}[30m]))
+      )
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_window: 30m
+      tier: background
+  - record: slo:sli_error:ratio_rate1h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file",code=~"5.."}[1h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file"}[1h]))
+      )
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_window: 1h
+      tier: background
+  - record: slo:sli_error:ratio_rate2h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file",code=~"5.."}[2h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file"}[2h]))
+      )
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_window: 2h
+      tier: background
+  - record: slo:sli_error:ratio_rate6h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file",code=~"5.."}[6h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file"}[6h]))
+      )
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_window: 6h
+      tier: background
+  - record: slo:sli_error:ratio_rate1d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file",code=~"5.."}[1d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file"}[1d]))
+      )
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_window: 1d
+      tier: background
+  - record: slo:sli_error:ratio_rate3d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file",code=~"5.."}[3d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="notifications-svc@file"}[3d]))
+      )
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_window: 3d
+      tier: background
+  - record: slo:sli_error:ratio_rate30d
+    expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"}[30d])
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_window: 30d
+      tier: background
+- name: sloth-slo-meta-recordings-sloth-example-tier3-notifications-availability
+  rules:
+  - record: slo:objective:ratio
+    expr: vector(0.99)
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      tier: background
+  - record: slo:error_budget:ratio
+    expr: vector(1-0.99)
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      tier: background
+  - record: slo:time_period:days
+    expr: vector(30)
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      tier: background
+  - record: slo:current_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"}
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      tier: background
+  - record: slo:period_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"}
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      tier: background
+  - record: slo:period_error_budget_remaining:ratio
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier3-notifications-availability",
+      sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"}
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      tier: background
+  - record: sloth_slo_info
+    expr: vector(1)
+    labels:
+      endpoint: notifications
+      sloth_id: sloth-example-tier3-notifications-availability
+      sloth_mode: cli-gen-prom
+      sloth_objective: "99"
+      sloth_service: sloth-example
+      sloth_slo: tier3-notifications-availability
+      sloth_spec: prometheus/v1
+      sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
+      tier: background
+- name: sloth-slo-alerts-sloth-example-tier3-notifications-availability
+  rules:
+  - alert: NotificationsHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"} > (14.4 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"} > (14.4 * 0.01)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"} > (6 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"} > (6 * 0.01)) without (sloth_window)
+      )
+    labels:
+      severity: info
+      sloth_severity: page
+      tier: background
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+  - alert: NotificationsHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"} > (3 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"} > (3 * 0.01)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"} > (1 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier3-notifications-availability", sloth_service="sloth-example", sloth_slo="tier3-notifications-availability"} > (1 * 0.01)) without (sloth_window)
+      )
+    labels:
+      severity: info
+      sloth_severity: ticket
+      tier: background
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+- name: sloth-slo-sli-recordings-sloth-example-tier3-exports-availability
+  rules:
+  - record: slo:sli_error:ratio_rate5m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file",code=~"5.."}[5m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file"}[5m]))
+      )
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_window: 5m
+      tier: background
+  - record: slo:sli_error:ratio_rate30m
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file",code=~"5.."}[30m]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file"}[30m]))
+      )
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_window: 30m
+      tier: background
+  - record: slo:sli_error:ratio_rate1h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file",code=~"5.."}[1h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file"}[1h]))
+      )
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_window: 1h
+      tier: background
+  - record: slo:sli_error:ratio_rate2h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file",code=~"5.."}[2h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file"}[2h]))
+      )
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_window: 2h
+      tier: background
+  - record: slo:sli_error:ratio_rate6h
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file",code=~"5.."}[6h]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file"}[6h]))
+      )
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_window: 6h
+      tier: background
+  - record: slo:sli_error:ratio_rate1d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file",code=~"5.."}[1d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file"}[1d]))
+      )
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_window: 1d
+      tier: background
+  - record: slo:sli_error:ratio_rate3d
+    expr: |
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file",code=~"5.."}[3d]))
+      )
+      /
+      (sum(rate(traefik_service_requests_total{service="exports-svc@file"}[3d]))
+      )
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_window: 3d
+      tier: background
+  - record: slo:sli_error:ratio_rate30d
+    expr: |
+      sum_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"}[30d])
+      / ignoring (sloth_window)
+      count_over_time(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"}[30d])
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_window: 30d
+      tier: background
+- name: sloth-slo-meta-recordings-sloth-example-tier3-exports-availability
+  rules:
+  - record: slo:objective:ratio
+    expr: vector(0.99)
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      tier: background
+  - record: slo:error_budget:ratio
+    expr: vector(1-0.99)
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      tier: background
+  - record: slo:time_period:days
+    expr: vector(30)
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      tier: background
+  - record: slo:current_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"}
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      tier: background
+  - record: slo:period_burn_rate:ratio
+    expr: |
+      slo:sli_error:ratio_rate30d{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"}
+      / on(sloth_id, sloth_slo, sloth_service) group_left
+      slo:error_budget:ratio{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"}
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      tier: background
+  - record: slo:period_error_budget_remaining:ratio
+    expr: 1 - slo:period_burn_rate:ratio{sloth_id="sloth-example-tier3-exports-availability",
+      sloth_service="sloth-example", sloth_slo="tier3-exports-availability"}
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      tier: background
+  - record: sloth_slo_info
+    expr: vector(1)
+    labels:
+      endpoint: exports
+      sloth_id: sloth-example-tier3-exports-availability
+      sloth_mode: cli-gen-prom
+      sloth_objective: "99"
+      sloth_service: sloth-example
+      sloth_slo: tier3-exports-availability
+      sloth_spec: prometheus/v1
+      sloth_version: 0e395d81513ff701f5d27b7aa47d794cb764fd5e
+      tier: background
+- name: sloth-slo-alerts-sloth-example-tier3-exports-availability
+  rules:
+  - alert: ExportsHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate5m{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"} > (14.4 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1h{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"} > (14.4 * 0.01)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate30m{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"} > (6 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"} > (6 * 0.01)) without (sloth_window)
+      )
+    labels:
+      severity: info
+      sloth_severity: page
+      tier: background
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
+      title: (page) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
+        burn rate is too fast.
+  - alert: ExportsHighErrorRate
+    expr: |
+      (
+          max(slo:sli_error:ratio_rate2h{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"} > (3 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate1d{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"} > (3 * 0.01)) without (sloth_window)
+      )
+      or
+      (
+          max(slo:sli_error:ratio_rate6h{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"} > (1 * 0.01)) without (sloth_window)
+          and
+          max(slo:sli_error:ratio_rate3d{sloth_id="sloth-example-tier3-exports-availability", sloth_service="sloth-example", sloth_slo="tier3-exports-availability"} > (1 * 0.01)) without (sloth_window)
+      )
+    labels:
+      severity: info
+      sloth_severity: ticket
+      tier: background
+    annotations:
+      summary: '{{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget burn
+        rate is over expected.'
       title: (ticket) {{$labels.sloth_service}} {{$labels.sloth_slo}} SLO error budget
         burn rate is too fast.

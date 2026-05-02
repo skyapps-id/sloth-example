@@ -1,39 +1,129 @@
 http:
   services:
-    tier1-svc:
+    login-svc:
       loadBalancer:
         servers:
           - url: "http://app:5000"
-    tier2-svc:
+    payment-svc:
       loadBalancer:
         servers:
           - url: "http://app:5000"
-    tier3-svc:
+    checkout-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    auth-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    users-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    products-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    orders-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    cart-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    reports-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    analytics-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    notifications-svc:
+      loadBalancer:
+        servers:
+          - url: "http://app:5000"
+    exports-svc:
       loadBalancer:
         servers:
           - url: "http://app:5000"
 
   routers:
-    tier1:
-      rule: "Path(`/login`) || Path(`/api/payment`) || Path(`/api/checkout`) || PathPrefix(`/api/auth`)"
-      service: tier1-svc
+    login:
+      rule: "Path(`/login`)"
+      service: login-svc
       entryPoints:
         - web
 
-    tier2:
-      rule: "Path(`/api/users`) || Path(`/api/products`) || Path(`/api/orders`) || Path(`/api/cart`)"
-      service: tier2-svc
+    payment:
+      rule: "Path(`/api/payment`)"
+      service: payment-svc
       entryPoints:
         - web
 
-    tier3:
-      rule: "Path(`/api/reports`) || Path(`/api/analytics`) || Path(`/api/notifications`) || Path(`/api/exports`)"
-      service: tier3-svc
+    checkout:
+      rule: "Path(`/api/checkout`)"
+      service: checkout-svc
+      entryPoints:
+        - web
+
+    auth:
+      rule: "PathPrefix(`/api/auth`)"
+      service: auth-svc
+      entryPoints:
+        - web
+
+    users:
+      rule: "Path(`/api/users`)"
+      service: users-svc
+      entryPoints:
+        - web
+
+    products:
+      rule: "Path(`/api/products`)"
+      service: products-svc
+      entryPoints:
+        - web
+
+    orders:
+      rule: "Path(`/api/orders`)"
+      service: orders-svc
+      entryPoints:
+        - web
+
+    cart:
+      rule: "Path(`/api/cart`)"
+      service: cart-svc
+      entryPoints:
+        - web
+
+    reports:
+      rule: "Path(`/api/reports`)"
+      service: reports-svc
+      entryPoints:
+        - web
+
+    analytics:
+      rule: "Path(`/api/analytics`)"
+      service: analytics-svc
+      entryPoints:
+        - web
+
+    notifications:
+      rule: "Path(`/api/notifications`)"
+      service: notifications-svc
+      entryPoints:
+        - web
+
+    exports:
+      rule: "Path(`/api/exports`)"
+      service: exports-svc
       entryPoints:
         - web
 
     health:
       rule: "Path(`/health`)"
-      service: tier3-svc
+      service: users-svc
       entryPoints:
         - web
