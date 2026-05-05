@@ -35,28 +35,64 @@
       "options": { "legend": { "displayMode": "table", "placement": "right", "calcs": ["lastNotNull"] } }
     },
     {
-      "title": "Error Budget Remaining by Endpoint",
+      "title": "Error Budget Remaining by Tier",
       "type": "timeseries",
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 8 },
       "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
-        { "expr": "slo:period_error_budget_remaining:ratio{sloth_slo=~\"tier1-.*-availability\"}", "legendFormat": "{{sloth_slo}}", "refId": "A" },
-        { "expr": "slo:period_error_budget_remaining:ratio{sloth_slo=~\"tier2-.*-availability\"}", "legendFormat": "{{sloth_slo}}", "refId": "B" },
-        { "expr": "slo:period_error_budget_remaining:ratio{sloth_slo=~\"tier3-.*-availability\"}", "legendFormat": "{{sloth_slo}}", "refId": "C" }
+        { "expr": "1 - (avg(slo:sli_error:ratio_rate5m{sloth_slo=~\"tier1-.*-availability\"}) / 0.001)", "legendFormat": "Tier 1 - Critical", "refId": "A" },
+        { "expr": "1 - (avg(slo:sli_error:ratio_rate5m{sloth_slo=~\"tier2-.*-availability\"}) / 0.005)", "legendFormat": "Tier 2 - Standard", "refId": "B" },
+        { "expr": "1 - (avg(slo:sli_error:ratio_rate5m{sloth_slo=~\"tier3-.*-availability\"}) / 0.01)", "legendFormat": "Tier 3 - Background", "refId": "C" }
       ],
       "fieldConfig": {
-        "defaults": { "color": { "mode": "palette-classic" }, "unit": "percentunit", "min": 0, "max": 1, "custom": { "fillOpacity": 20, "lineWidth": 2 } },
+        "defaults": { "color": { "mode": "palette-classic" }, "unit": "percentunit", "min": 0, "max": 1, "custom": { "fillOpacity": 20, "lineWidth": 2, "thresholdsStyle": { "mode": "area" } }, "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "yellow", "value": 0.5 }, { "color": "green", "value": 0.9 }] } },
+        "overrides": []
+      },
+      "options": { "legend": { "displayMode": "table", "placement": "right", "calcs": ["lastNotNull"] }, "tooltip": { "mode": "multi", "sort": "none" } }
+    },
+    {
+      "title": "Burn Rate (Tier 1)",
+      "type": "timeseries",
+      "gridPos": { "h": 4, "w": 8, "x": 0, "y": 20 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "targets": [
+        { "expr": "slo:current_burn_rate:ratio{sloth_slo=~\"tier1-.*-availability\"}", "legendFormat": "{{sloth_slo}}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "unit": "short",
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }, { "color": "red", "value": 3 }] }
+        },
         "overrides": []
       },
       "options": { "legend": { "displayMode": "table", "placement": "right" } }
     },
     {
-      "title": "Burn Rate (Tier 1)",
+      "title": "Burn Rate (Tier 2)",
       "type": "timeseries",
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "gridPos": { "h": 4, "w": 8, "x": 8, "y": 20 },
       "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
-        { "expr": "slo:current_burn_rate:ratio{sloth_slo=~\"tier1-.*-availability\"}", "legendFormat": "{{sloth_slo}}", "refId": "A" }
+        { "expr": "slo:current_burn_rate:ratio{sloth_slo=~\"tier2-.*-availability\"}", "legendFormat": "{{sloth_slo}}", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "unit": "short",
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "yellow", "value": 1 }, { "color": "red", "value": 3 }] }
+        },
+        "overrides": []
+      },
+      "options": { "legend": { "displayMode": "table", "placement": "right" } }
+    },
+    {
+      "title": "Burn Rate (Tier 3)",
+      "type": "timeseries",
+      "gridPos": { "h": 4, "w": 8, "x": 16, "y": 20 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "targets": [
+        { "expr": "slo:current_burn_rate:ratio{sloth_slo=~\"tier3-.*-availability\"}", "legendFormat": "{{sloth_slo}}", "refId": "A" }
       ],
       "fieldConfig": {
         "defaults": {
@@ -154,9 +190,121 @@
       "options": { "graphMode": "none", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto", "colorMode": "background" }
     },
     {
+      "title": "SLO Compliance - Tier 1 (Target: 99.9%)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 8, "x": 0, "y": 24 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "targets": [
+        { "expr": "1 - avg(slo:sli_error:ratio_rate5m{sloth_slo=~\"tier1-.*-availability\"})", "legendFormat": "Current SLO", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "unit": "percentunit",
+          "decimals": 4,
+          "min": 0,
+          "max": 1,
+          "noValue": "N/A",
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "yellow", "value": 0.998 }, { "color": "green", "value": 0.999 }] }
+        },
+        "overrides": []
+      },
+      "options": { "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto", "colorMode": "background", "displayMode": "gradient", "wideLayout": true }
+    },
+    {
+      "title": "SLO Compliance - Tier 2 (Target: 99.5%)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 8, "x": 8, "y": 24 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "targets": [
+        { "expr": "1 - avg(slo:sli_error:ratio_rate5m{sloth_slo=~\"tier2-.*-availability\"})", "legendFormat": "Current SLO", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "unit": "percentunit",
+          "decimals": 4,
+          "min": 0,
+          "max": 1,
+          "noValue": "N/A",
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "yellow", "value": 0.994 }, { "color": "green", "value": 0.995 }] }
+        },
+        "overrides": []
+      },
+      "options": { "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto", "colorMode": "background", "displayMode": "gradient", "wideLayout": true }
+    },
+    {
+      "title": "SLO Compliance - Tier 3 (Target: 99.0%)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 8, "x": 16, "y": 24 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "targets": [
+        { "expr": "1 - avg(slo:sli_error:ratio_rate5m{sloth_slo=~\"tier3-.*-availability\"})", "legendFormat": "Current SLO", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "unit": "percentunit",
+          "decimals": 4,
+          "min": 0,
+          "max": 1,
+          "noValue": "N/A",
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "yellow", "value": 0.989 }, { "color": "green", "value": 0.99 }] }
+        },
+        "overrides": []
+      },
+      "options": { "graphMode": "area", "justifyMode": "auto", "orientation": "auto", "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }, "textMode": "auto", "colorMode": "background", "displayMode": "gradient", "wideLayout": true }
+    },
+    {
+      "title": "SLO Status per Endpoint",
+      "type": "table",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 28 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
+      "targets": [
+        { "expr": "1 - slo:sli_error:ratio_rate5m{sloth_slo=~\"tier.*-.*-availability\"}", "instant": true, "format": "table", "refId": "A" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "align": "auto", "inspect": false },
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] }
+        },
+        "overrides": [
+          {
+            "matcher": { "id": "byName", "options": "Value" },
+            "properties": [
+              { "id": "unit", "value": "percentunit" },
+              { "id": "decimals", "value": 4 },
+              { "id": "displayName", "value": "Current SLO" },
+              { "id": "custom.cellOptions", "value": { "type": "color-background", "mode": "gradient" } },
+              { "id": "custom.align", "value": "right" },
+              { "id": "thresholds", "value": { "mode": "absolute", "steps": [{ "color": "red", "value": null }, { "color": "orange", "value": 0.98 }, { "color": "yellow", "value": 0.99 }, { "color": "green", "value": 0.995 }] } }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "sloth_slo" },
+            "properties": [
+              { "id": "displayName", "value": "SLO Name" },
+              { "id": "custom.align", "value": "left" }
+            ]
+          }
+        ]
+      },
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": { "Time": true },
+            "renameByName": {},
+            "indexByName": { "sloth_slo": 0, "Value": 1 }
+          }
+        }
+      ],
+      "options": { "showHeader": true, "cellHeight": "sm", "footer": { "show": true, "reducer": ["mean"], "fields": ["Value"], "countRows": false, "fields": "" } }
+    },
+    {
       "title": "Raw Error Rate per Endpoint",
       "type": "timeseries",
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 20 },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 36 },
       "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         { "expr": "sum(rate(traefik_service_requests_total{code=~\"5..\"}[$__rate_interval])) by (service) * 100", "legendFormat": "{{service}}", "refId": "A" }
@@ -170,7 +318,7 @@
     {
       "title": "Latency p99 per Endpoint",
       "type": "timeseries",
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 20 },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 36 },
       "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         { "expr": "histogram_quantile(0.99, sum(rate(traefik_service_request_duration_seconds_bucket[$__rate_interval])) by (le, service))", "legendFormat": "{{service}}", "refId": "A" }
@@ -184,7 +332,7 @@
     {
       "title": "Requests by Status Code",
       "type": "piechart",
-      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 28 },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 44 },
       "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         { "expr": "sum(increase(traefik_service_requests_total[1h])) by (code)", "legendFormat": "{{code}}", "refId": "A" }
@@ -194,7 +342,7 @@
     {
       "title": "Requests per Endpoint",
       "type": "barchart",
-      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 28 },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 44 },
       "datasource": { "type": "prometheus", "uid": "${DS_PROMETHEUS}" },
       "targets": [
         { "expr": "sum(increase(traefik_service_requests_total[1h])) by (service)", "legendFormat": "{{service}}", "refId": "A" }
@@ -223,5 +371,5 @@
   "timezone": "browser",
   "title": "SLO Per-Endpoint Overview",
   "uid": "slo-tier-overview",
-  "version": 3
+  "version": 6
 }

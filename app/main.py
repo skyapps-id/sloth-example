@@ -32,10 +32,19 @@ ENDPOINTS = {
     },
 }
 
-ERROR_RATES = {
-    "tier1": 0.002,
-    "tier2": 0.01,
-    "tier3": 0.03,
+ENDPOINT_ERROR_RATES = {
+    "/login": 0.0005,
+    "/api/payment": 0.008,
+    "/api/checkout": 0.003,
+    "/api/auth/refresh": 0.0002,
+    "/api/users": 0.002,
+    "/api/products": 0.006,
+    "/api/orders": 0.012,
+    "/api/cart": 0.003,
+    "/api/reports": 0.02,
+    "/api/analytics": 0.04,
+    "/api/notifications": 0.025,
+    "/api/exports": 0.05,
 }
 
 LATENCY_RANGE = {
@@ -44,9 +53,18 @@ LATENCY_RANGE = {
     "tier3": (0.1, 2.0),
 }
 
+BURST_CHANCE = 0.02
+BURST_ERROR_RATE = 0.5
+
 
 def handle_request(method, endpoint, tier):
-    if random.random() < ERROR_RATES[tier]:
+    error_rate = ENDPOINT_ERROR_RATES.get(endpoint, 0.01)
+
+    is_burst = random.random() < BURST_CHANCE
+    if is_burst:
+        error_rate = BURST_ERROR_RATE
+
+    if random.random() < error_rate:
         r = random.random()
         if r < 0.5:
             code, reason = 500, "internal server error"
@@ -54,7 +72,7 @@ def handle_request(method, endpoint, tier):
             code, reason = 502, "bad gateway"
         else:
             code, reason = 503, "service unavailable"
-        return jsonify({"endpoint": endpoint, "tier": tier, "status": "error", "error": reason}), code
+        return jsonify({"endpoint": endpoint, "tier": tier, "status": "error", "error": reason, "burst": is_burst}), code
 
     lo, hi = LATENCY_RANGE[tier]
     latency = random.expovariate(1.0 / ((lo + hi) / 2.0))
