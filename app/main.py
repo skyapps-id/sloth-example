@@ -1,6 +1,5 @@
-import random
-import time
 import logging
+import time
 from flask import Flask, jsonify
 
 app = Flask(__name__)
@@ -32,58 +31,13 @@ ENDPOINTS = {
     },
 }
 
-ENDPOINT_ERROR_RATES = {
-    "/login": 0.0005,
-    "/api/payment": 0.008,
-    "/api/checkout": 0.003,
-    "/api/auth/refresh": 0.0002,
-    "/api/users": 0.002,
-    "/api/products": 0.006,
-    "/api/orders": 0.012,
-    "/api/cart": 0.003,
-    "/api/reports": 0.02,
-    "/api/analytics": 0.04,
-    "/api/notifications": 0.025,
-    "/api/exports": 0.05,
-}
-
-LATENCY_RANGE = {
-    "tier1": (0.02, 0.15),
-    "tier2": (0.05, 0.4),
-    "tier3": (0.1, 2.0),
-}
-
-BURST_CHANCE = 0.02
-BURST_ERROR_RATE = 0.5
 
 
 def handle_request(method, endpoint, tier):
-    error_rate = ENDPOINT_ERROR_RATES.get(endpoint, 0.01)
-
-    is_burst = random.random() < BURST_CHANCE
-    if is_burst:
-        error_rate = BURST_ERROR_RATE
-
-    if random.random() < error_rate:
-        r = random.random()
-        if r < 0.5:
-            code, reason = 500, "internal server error"
-        elif r < 0.8:
-            code, reason = 502, "bad gateway"
-        else:
-            code, reason = 503, "service unavailable"
-        return jsonify({"endpoint": endpoint, "tier": tier, "status": "error", "error": reason, "burst": is_burst}), code
-
-    lo, hi = LATENCY_RANGE[tier]
-    latency = random.expovariate(1.0 / ((lo + hi) / 2.0))
-    latency = min(latency, hi * 2)
-    time.sleep(latency)
-
     return jsonify({
         "endpoint": endpoint,
         "tier": tier,
         "status": "ok",
-        "latency_ms": round(latency * 1000, 2),
     }), 200
 
 
@@ -93,12 +47,33 @@ for tier, config in ENDPOINTS.items():
             def handler():
                 return handle_request(m, ep, t)
             return handler
-        app.add_url_rule(endpoint, endpoint.replace("/", "_"), make_handler(endpoint, method, tier))
+        app.add_url_rule(endpoint, endpoint.replace("/", "_"), make_handler(endpoint, method, tier), methods=[method])
 
 
 @app.route("/health")
 def health():
     return jsonify({"status": "healthy"}), 200
+
+
+@app.route("/latency/tier1", methods=["GET"])
+def latency_tier1():
+    time.sleep(0.8)
+    return jsonify({"endpoint": "/latency/tier1", "tier": "tier1", "status": "ok", "latency_ms": 800}), 200
+
+
+@app.route("/error/tier1", methods=["GET"])
+def error_tier1():
+    return jsonify({"endpoint": "/error/tier1", "tier": "tier1", "status": "error", "error": "internal server error"}), 500
+
+
+@app.route("/error/tier2", methods=["GET"])
+def error_tier2():
+    return jsonify({"endpoint": "/error/tier2", "tier": "tier2", "status": "error", "error": "bad gateway"}), 502
+
+
+@app.route("/error/tier3", methods=["GET"])
+def error_tier3():
+    return jsonify({"endpoint": "/error/tier3", "tier": "tier3", "status": "error", "error": "service unavailable"}), 503
 
 
 if __name__ == "__main__":

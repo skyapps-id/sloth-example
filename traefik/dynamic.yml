@@ -127,3 +127,28 @@ http:
       service: users-svc
       entryPoints:
         - web
+
+    # Test endpoints - trigger intentional errors/latency for SLO testing
+    error-tier1:
+      rule: "Path(`/error/tier1`)"
+      service: login-svc
+      entryPoints:
+        - web
+
+    error-tier2:
+      rule: "Path(`/error/tier2`)"
+      service: users-svc
+      entryPoints:
+        - web
+
+    error-tier3:
+      rule: "Path(`/error/tier3`)"
+      service: reports-svc
+      entryPoints:
+        - web
+
+    latency-tier1:
+      rule: "Path(`/latency/tier1`)"
+      service: login-svc
+      entryPoints:
+        - web
